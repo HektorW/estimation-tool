@@ -4,9 +4,9 @@ const addInputEl = document.querySelector('[data-input-add]')
 const resultEl = document.querySelector('[data-result]')
 
 const updateResults = () => {
-  const estimate = parseFloat(estimateInputEl.value || 0)
-  const multiply = parseFloat(multiplyInputEl.value || 0)
-  const addHours = parseFloat(addInputEl.value || 0)
+  const estimate = parseFloat(estimateInputEl.value) || 0
+  const multiply = parseFloat(multiplyInputEl.value) || 1
+  const addHours = parseFloat(addInputEl.value) || 0
 
   resultEl.innerHTML = roundResult(estimate * multiply + addHours)
 }
