@@ -8,7 +8,8 @@ const updateResults = () => {
   const multiply = parseFloat(multiplyInputEl.value) || 1
   const addHours = parseFloat(addInputEl.value) || 0
 
-  resultEl.innerHTML = roundResult(estimate * multiply + addHours)
+  resultEl.innerHTML =
+    estimate === 0 ? 0 : roundResult(estimate * multiply + addHours)
 }
 
 const resizeInput = event => {
@@ -33,4 +34,5 @@ const isInteger = value => Math.round(value) === value
   resizeInput({ target: el })
 })
 
+updateResults()
 estimateInputEl.focus()
