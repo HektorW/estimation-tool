@@ -29,6 +29,7 @@ const isInteger = value => Math.round(value) === value
 ;[estimateInputEl, multiplyInputEl, addInputEl].forEach(el => {
   el.addEventListener('input', updateResults)
   el.addEventListener('input', resizeInput)
+  window.addEventListener('resize', () => resizeInput({ target: el }))
   resizeInput({ target: el })
 })
 
