@@ -9,23 +9,42 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+  <link rel="stylesheet" type="text/css" href="/styles.css" />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 
 <body>
-  <h1 class="title">Estimation tool</h1>
+  <main>
+    <h1 class="title">Estimation tool</h1>
 
-  <div class="input-container">
-    Estimate:
-    <input type="number" step="0.25" placeholder="1" />
-    hours
-  </div>
+    <section class="calculation-container">
+      <div class="estimate-container">
+        Development estimate is
+        <span class="hidden"></span>
+        <input type="number" step="0.25" size="1" placeholder="0" data-input-estimate />
+        hours
+      </div>
 
-  <div class="result-container">
-    = <span data-result-hours></span> hours
-  </div>
+      <div class="multiply-container">
+        Multiply by
+        <span class="hidden"></span>
+        <input type="number" step="0.05" size="1" value="1.5" placeholder="0" data-input-multiply />
+      </div>
 
-  <script src="main.js"></script>
+      <div class="add-container">
+        Add
+        <span class="hidden"></span>
+        <input type="number" step="0.25" size="1" value="1" placeholder="0" data-input-add />
+        hours
+      </div>
+
+      <div class="result-container">
+        = <span data-result>2.5</span> hours
+      </div>
+    </section>
+  </main>
+
+  <script src="/main.js"></script>
 </body>
 
 </html>
