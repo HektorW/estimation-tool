@@ -8,6 +8,16 @@ const serveDirectory = join(__dirname, 'client')
 
 const app = new Koa()
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(async (ctx, next) => {
+    if (ctx.headers['x-forwarded-proto'] !== 'https') {
+      ctx.redirect(`https://${ctx.request.host}${ctx.request.url}`)
+    } else {
+      await next()
+    }
+  })
+}
+
 app.use(koaLogger())
 app.use(koaStatic(serveDirectory))
 
