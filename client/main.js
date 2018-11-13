@@ -23,8 +23,8 @@ const roundResult = value =>
   Number.isNaN(value)
     ? 0
     : isInteger(value)
-      ? value
-      : (Math.round(value * 4) / 4).toFixed(2)
+    ? value
+    : (Math.round(value * 4) / 4).toFixed(2)
 
 const isInteger = value => Math.round(value) === value
 ;[estimateInputEl, multiplyInputEl, addInputEl].forEach(el => {
@@ -36,3 +36,14 @@ const isInteger = value => Math.round(value) === value
 
 updateResults()
 estimateInputEl.focus()
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js').then(
+    () => {
+      console.log('Service worker is registered.')
+    },
+    error => {
+      console.log('Failed to register service worker.', error)
+    }
+  )
+}
