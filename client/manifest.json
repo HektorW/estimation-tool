@@ -1,0 +1,25 @@
+{
+  "short_name": "Estimate",
+  "name": "Estimation Tool",
+  "icons": [
+    {
+      "src": "/images/icon-16x16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "/images/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/?utm_source=pwa",
+  "background_color": "#FFC560",
+  "display": "standalone",
+  "theme_color": "#FFC560"
+}

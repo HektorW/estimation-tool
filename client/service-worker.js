@@ -1,5 +1,10 @@
 const cacheName = 'files-chache-1.0.0'
-const precacheFiles = ['/index.html', '/main.js', '/styles.css']
+const precacheFiles = [
+  '/index.html',
+  '/main.js',
+  '/styles.css',
+  '/manifest.json'
+]
 
 self.addEventListener('install', event => {
   event.waitUntil(
