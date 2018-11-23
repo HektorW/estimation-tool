@@ -46,4 +46,44 @@ if ('serviceWorker' in navigator) {
       console.log('Failed to register service worker.', error)
     }
   )
+
+  navigator.serviceWorker.onmessage = event => {
+    const { data } = event
+    if (data === 'refresh') {
+      toast(`
+        <div>There is a new version of the page available.</div>
+        <div>Refresh the page to see it.</div>
+      `)
+    }
+  }
 }
+
+const toast = (() => {
+  let timeoutId = null
+  let toastEl = null
+
+  const removeToastEl = () => {
+    if (toastEl) toastEl.parentElement.removeChild(toastEl)
+    toastEl = null
+  }
+
+  return toastContent => {
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => {
+      removeToastEl()
+
+      toastEl = document.createElement('div')
+
+      toastEl.innerHTML = `
+          <div class="toast">
+            <button></button>
+            ${toastContent}
+          </div>
+        `
+
+      toastEl.querySelector('button').onclick = removeToastEl
+
+      document.body.appendChild(toastEl)
+    }, 1000)
+  }
+})()

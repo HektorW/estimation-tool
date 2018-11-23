@@ -2,6 +2,7 @@ const { join } = require('path')
 const Koa = require('koa')
 const koaLogger = require('koa-logger')
 const koaStatic = require('koa-static')
+const koaEtag = require('koa-etag')
 
 const port = process.env.PORT || 4006
 const serveDirectory = join(__dirname, 'client')
@@ -19,6 +20,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(koaLogger())
+app.use(koaEtag())
 app.use(koaStatic(serveDirectory))
 
 app.listen(port, () => {
