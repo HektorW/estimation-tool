@@ -52,7 +52,7 @@ if ('serviceWorker' in navigator) {
     if (data === 'refresh') {
       toast(`
         <div>There is a new version of the page available.</div>
-        <div>Refresh the page to see it.</div>
+        <div><a href="/" onclick="event.preventDefault();window.location.reload()">Refresh</a> the page to use the latest version 🤗.</div>
       `)
     }
   }
