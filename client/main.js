@@ -59,31 +59,40 @@ if ('serviceWorker' in navigator) {
 }
 
 const toast = (() => {
-  let timeoutId = null
-  let toastEl = null
+  let showTimeoutId = null
+  let removeTimeoutId = null
+  let toastContainerEl = null
 
   const removeToastEl = () => {
-    if (toastEl) toastEl.parentElement.removeChild(toastEl)
-    toastEl = null
+    if (toastContainerEl)
+      toastContainerEl.parentElement.removeChild(toastContainerEl)
+    toastContainerEl = null
+    clearTimeout(removeTimeoutId)
   }
 
-  return toastContent => {
-    clearTimeout(timeoutId)
-    timeoutId = setTimeout(() => {
+  return (toastContent, removeMs = 10000) => {
+    clearTimeout(showTimeoutId)
+    showTimeoutId = setTimeout(() => {
       removeToastEl()
 
-      toastEl = document.createElement('div')
+      toastContainerEl = document.createElement('div')
 
-      toastEl.innerHTML = `
+      toastContainerEl.innerHTML = `
           <div class="toast">
             <button></button>
             ${toastContent}
           </div>
         `
 
-      toastEl.querySelector('button').onclick = removeToastEl
+      toastContainerEl.querySelector('button').onclick = removeToastEl
 
-      document.body.appendChild(toastEl)
+      document.body.appendChild(toastContainerEl)
+
+      removeTimeoutId = setTimeout(() => {
+        const toastEl = toastContainerEl.querySelector('.toast')
+        toastEl.classList.add('remove')
+        toastEl.addEventListener('animationend', removeToastEl)
+      }, removeMs)
     }, 1000)
   }
 })()

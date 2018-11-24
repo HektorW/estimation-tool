@@ -93,6 +93,10 @@ input[type='number']::-webkit-outer-spin-button {
   max-width: calc(100% - 40px);
 }
 
+.toast.remove {
+  animation: toast-disappear .3s;
+}
+
 .toast button {
   background: none;
   border-radius: 0;
@@ -128,6 +132,11 @@ input[type='number']::-webkit-outer-spin-button {
 @keyframes toast-appear {
   0% { transform: translateY(calc(100% + 20px)); }
   100% { transform: translateY(0); }
+}
+
+@keyframes toast-disappear {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(calc(100% + 20px)); }
 }
 
 @media (min-width: 600px) {
